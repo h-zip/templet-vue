@@ -6,6 +6,16 @@ const path = {
   pageB: {
     home: '/pageB/home',
     detail: '/pageB/detail'
+  },
+  login: {
+    index: '/login/index'
+  },
+  home: {
+    index: '/home/index'
+  },
+  my: {
+    index: '/my/index'
   }
 }
+
 export default path

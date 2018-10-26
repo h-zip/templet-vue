@@ -5,6 +5,7 @@ import router from './router/index'
 import vonic from './components/vonic/index'
 Vue.config.productionTip = false
 Vue.use(VueRouter)
+Vue.use(vonic.Vonic)
 Vue.use(vonic.Vonic.app, {
   router,
   pushMehod: 'push', // push, replace

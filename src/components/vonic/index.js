@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vonic from './src/index'
 import sess from "./src/sess"
 let vonic = {}
+sess.clear()
 const beforeEach = (toRoute, fromRoute, next) => {
   const to = toRoute.path
   const from = fromRoute.path
