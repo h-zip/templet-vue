@@ -2,11 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import router from './router/index'
-import vonic from './components/vonic/index'
+import Vonic from './components/vonic/index'
 Vue.config.productionTip = false
 Vue.use(VueRouter)
-Vue.use(vonic.Vonic)
-Vue.use(vonic.Vonic.app, {
+Vue.use(Vonic)
+Vue.use(Vonic.app, {
   router,
   pushMehod: 'push', // push, replace
   pageTransition: 'ios'

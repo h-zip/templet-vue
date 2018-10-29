@@ -1,4 +1,7 @@
 const path = {
+  tabbar: {
+    index: '/tabbar/index'
+  },
   pageA: {
     home: '/pageA/home',
     detail: '/pageA/detail'
