@@ -3,6 +3,7 @@ import path from './path'
 
 const route = [
   {path: '/', component: component.tabbar.index},
+  {name: 'guide.index', path: path.guide.index, component: component.guide.index, prop: true, meta: {}},
   {name: 'tabbar.index', path: path.tabbar.index, component: component.tabbar.index, prop: true, meta: {}},
   {name: 'pageA.home', path: path.pageA.home, component: component.pageA.home, prop: true, meta: {}},
   {name: 'pageA.detail', path: path.pageA.detail, component: component.pageA.detail, prop: true, meta: {}},

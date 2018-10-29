@@ -1,4 +1,7 @@
 const path = {
+  guide: {
+    index: '/guide/index',
+  },
   tabbar: {
     index: '/tabbar/index'
   },

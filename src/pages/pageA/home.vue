@@ -23,7 +23,7 @@ export default {
   watch: {},
   methods: {
     back: function () {
-      $router.navi_pop(path.tabbar.index)
+      $router.navi_pop()
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="page" v-nav="{hideNavbar: true}">
     <div class="page-content">
-      <button class="button button-positive button-block" @click="login">login</button>
+      <button class="button button-positive button-block" @click="guide">guide</button>
     </div>
   </div>
 </template>
@@ -17,9 +17,9 @@ export default {
   },
   watch: {},
   methods: {
-    login: function () {
-      sess.set('token','1')
-      $router.navi_changeRoot(path.tabbar.index)
+    guide: function () {
+      sess.set('firstOpen','0')
+      $router.navi_changeRoot(path.login.index)
     }
   }
 }
