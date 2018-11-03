@@ -5,11 +5,14 @@
     </von-header>
     <div class="page-content padding-top">
       <p class="text-center">{{this.title}}</p>
+      <button class="button button-positive button-block" @click="logout">logout</button>
     </div>
   </div>
 </template>
 
 <script>
+import sess from '../../components/vonic/src/sess'
+import path from '../../router/path'
 export default {
   props: {
   },
@@ -22,6 +25,10 @@ export default {
   },
   watch: {},
   methods: {
+    logout: function () {
+      sess.remove('token')
+      $router.navi_changeRoot(path.login.index)
+    }
   }
 }
 </script>

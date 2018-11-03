@@ -30,19 +30,12 @@ router.afterEach((toRoute, fromRoute) => {
   const to = toRoute.path
   const from = fromRoute.path
   console.log('after' + from + '------->' + to)
-  // [Custom Business] Never use history scrollTop when '/' => '/home'
-  // if (from === '/' && to === '/') {
-  //   sess.set('navi',[to])
-  //   console.log(sess.get('navi'))
-  // }else {
-  // }
 })
 router.navi_push = function (path) {
   let arr = sess.get('navi')
   arr.push(path)
   sess.set('navi',arr)
   console.log(arr)
-  // Vonic.app.nextDirection('forward')
   router.forward(path)
 }
 router.navi_pop = function () {
@@ -51,12 +44,11 @@ router.navi_pop = function () {
   let last = arr[arr.length-1]
   sess.set('navi',arr)
   console.log(arr)
-  // Vonic.app.nextDirection('back')
   router.back(last)
 }
 router.navi_changeRoot = function (path) {
   sess.set('navi',[path])
-  // Vonic.app.nextDirection('no')
+  Vonic.app.nextDirection('no')
   router._push(path)
 }
 export default router
