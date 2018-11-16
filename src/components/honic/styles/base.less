@@ -1,0 +1,85 @@
+@import "normalize";
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+html {
+  overflow-x: hidden;
+  background-color: @body-background;
+  padding-top: constant(@safe-area-inset-top); /* iOS 11.0 */
+  padding-left: constant(@safe-area-inset-left);
+  padding-bottom: constant(@safe-area-inset-bottom);
+  padding-right:  constant(@safe-area-inset-right);
+
+  padding-top: env(@safe-area-inset-top);  /* iOS 11.2 */
+  padding-left: env(@safe-area-inset-left);
+  padding-bottom: env(@safe-area-inset-bottom);
+  padding-right:  env(@safe-area-inset-right);
+}
+body {
+  overflow-x: hidden;
+  font-family: @font-family;
+  font-size: @font-size-small;
+  line-height: @line-height-base;
+  color: @text-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  margin: 0;
+  padding: 0;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+input::-ms-clear, input::-ms-reveal {
+  display: none;
+}
+
+a {
+  color: @link-color;
+  background: transparent;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  transition: color @transition-time ease;
+
+  &:hover {
+    color: @link-hover-color;
+  }
+
+  &:active {
+    color: @link-active-color;
+  }
+
+  &:active,
+  &:hover {
+    outline: 0;
+    text-decoration: none;
+  }
+
+  &[disabled] {
+    color: #ccc;
+    cursor: @cursor-disabled;
+    pointer-events: none;
+  }
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: @code-family;
+}

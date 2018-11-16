@@ -24,6 +24,8 @@
         "es6-promise": "^4.2.5",
         "fastclick": "^1.0.6",
         "iview": "^3.1.4",
+        "less": "^3.8.1",
+        "less-loader": "^4.1.0",
         "node-sass": "^4.9.4",
         "sass-loader": "^7.1.0",
         "scss-loader": "0.0.1",
