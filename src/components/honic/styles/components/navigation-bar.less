@@ -1,0 +1,40 @@
+@navibar-prefix-cls: ~"@{css-prefix}navibar";
+@item-group-prefix-cls: ~"@{css-prefix}item-group";
+@title-view-prefix-cls: ~"@{css-prefix}title-view";
+@left-item-prefix-cls: ~"@{css-prefix}left-item";
+@right-item-prefix-cls: ~"@{css-prefix}right-item";
+.@{navibar-prefix-cls} {
+  position: fixed;
+  width: 100%;
+  height: @navigation-bar-height + @status-bar-height;
+  top: 0;
+  background-color: #009689;
+  .@{item-group-prefix-cls} {
+    font-size: 0;
+    &-left {
+      .item-group-float(left);
+      left: 0;
+      .@{left-item-prefix-cls} {
+        position: relative;
+        display: inline-block;
+        height: @navigation-bar-height;
+      }
+    }
+    &-right {
+      .item-group-float(right);
+      right: 0;
+      .@{right-item-prefix-cls} {
+        position: relative;
+        display: inline-block;
+        height: @navigation-bar-height;
+      }
+    }
+  }
+  .@{title-view-prefix-cls} {
+    text-align: center;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    padding-top: @status-bar-height;
+  }
+}

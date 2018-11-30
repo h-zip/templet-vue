@@ -1,4 +1,10 @@
 .size(@width; @height) {
   width: @width;
   height: @height;
-}
+};
+.item-group-float(@direction) {
+  position: absolute;
+  float: @direction;
+  z-index: 0;
+  top: @status-bar-height;
+};

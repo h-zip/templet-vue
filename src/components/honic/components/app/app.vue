@@ -1,7 +1,7 @@
 <template>
   <div :class="classes">
-    <div class="navibar">top</div>
-    <div class="content">
+    <NavigationBar ref="navi"></NavigationBar>
+    <div class="content" @click="onClick">
       aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
       aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
       aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
@@ -12,27 +12,106 @@
 </template>
 
 <script>
+import NavigationBar from '../navigation-bar'
 const prefixCls = 'xxx-app';
 export default {
   name: "app",
-  data: function () {
-    return {
-      classes: [
+  components: {
+    NavigationBar
+  },
+  computed: {
+    classes: function () {
+      return [
         `${prefixCls}`
       ]
+    }
+  },
+  data: function () {
+    return {
+      styleA: {
+        position: 'relative',
+        backgroundColor: 'red',
+        height: '20px',
+        width: '30px',
+        transform: 'translateY(12px)',
+        fontSize: '0'
+      },
+      styleB: {
+        position: 'relative',
+        backgroundColor: 'black',
+        height: '30px',
+        width: '30px',
+        transform: 'translateY(7px)'
+
+      },
+      styleC: {
+        position: 'relative',
+        color: 'white',
+        fontSize: '20px',
+        margin: 'auto',
+        lineHeight: '44px'
+      },
+      styleD: {
+        backgroundColor: 'black',
+        color: 'white',
+        fontSize: '20px',
+        lineHeight: '20px'
+      },
+      classD: {
+        'ivu-icon': true,
+        'ivu-icon-ios-arrow-back': true
+      },
+      count: 1234567
+    }
+  },
+  mounted: function () {
+  },
+  methods: {
+    onClick: function () {
+      this.count++
+      let a = {
+        render_l: {
+          props: {
+            space: '5px'
+          },
+          render: [
+            (h) =>  h('div',{
+              style: this.styleA
+            }, [h('i',{
+              class: this.classD,
+              style: this.styleD
+            }, [])]),
+            (h) =>  h('div',{
+              style: this.styleA
+            }, [])
+          ]
+        },
+        render_t: {
+          props: {},
+          render: [
+            (h) =>  h('div', {
+              style: this.styleC
+            }, [this.count])
+          ]
+        },
+        render_r: {
+          props: {
+            space: '5px'
+          },
+          render: [
+            (h) =>  h('div',{
+              style: this.styleB
+            }, [])
+          ]
+        }
+      }
+      this.$navi.config(a)
     }
   }
 }
 </script>
 
 <style scoped lang="less">
-  .navibar {
-    width: 100%;
-    position: fixed;
-    height: 45px;
-    top: 0;
-    background-color: #4cd964;
-  }
   .tabbar {
     width: 100%;
     position: fixed;
@@ -44,7 +123,7 @@ export default {
     border: red 1px solid;
   }
   .content {
-    padding: 45px 0;
+    padding: 64px 0 45px;
     color: white;
   }
 </style>
