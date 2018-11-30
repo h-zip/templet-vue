@@ -29,6 +29,7 @@ export default {
   data: function () {
     return {
       styleA: {
+        display: 'inline-block',
         position: 'relative',
         backgroundColor: 'red',
         height: '20px',
@@ -37,11 +38,13 @@ export default {
         fontSize: '0'
       },
       styleB: {
+        display: 'block',
         position: 'relative',
         backgroundColor: 'black',
-        height: '30px',
-        width: '30px',
-        transform: 'translateY(7px)'
+        height: '40px',
+        width: '40px',
+        transform: 'translateY(2px)'
+
 
       },
       styleC: {
@@ -52,10 +55,11 @@ export default {
         lineHeight: '44px'
       },
       styleD: {
-        backgroundColor: 'black',
+        // backgroundColor: 'black',
         color: 'white',
         fontSize: '20px',
-        lineHeight: '20px'
+        lineHeight: '20px',
+        transform: 'translateY(12px)'
       },
       classD: {
         'ivu-icon': true,
@@ -75,14 +79,13 @@ export default {
             space: '5px'
           },
           render: [
-            (h) =>  h('div',{
-              style: this.styleA
-            }, [h('i',{
+            (h) =>  h('i',{
               class: this.classD,
               style: this.styleD
-            }, [])]),
-            (h) =>  h('div',{
-              style: this.styleA
+            }, []),
+            (h) =>  h('i',{
+              class: this.classD,
+              style: this.styleD
             }, [])
           ]
         },
@@ -99,7 +102,7 @@ export default {
             space: '5px'
           },
           render: [
-            (h) =>  h('div',{
+            (h) =>  h('img',{
               style: this.styleB
             }, [])
           ]
