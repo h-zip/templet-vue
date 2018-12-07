@@ -1,12 +1,13 @@
 import Vue from 'vue'
-// import VueRouter from 'vue-router'
+import VueRouter from 'vue-router'
+import 'animate.css'
 import './components/honic/styles/index.less';
 import App from './components/honic/components/app'
 import _ from 'lodash'
-// import router from './router/index'
+import router from './router/index'
 // import Vonic from './components/vonic/index'
 Vue.config.productionTip = false
-// Vue.use(VueRouter)
+Vue.use(VueRouter)
 // Vue.use(Vonic)
 // Vue.use(Vonic.app, {
 //   router,
@@ -17,7 +18,7 @@ Vue.prototype.$_ = _
 window.Vue = Vue
 let app = new Vue({
   el: '#app',
-  // router,
+  router,
   render: h=> h(App)
 })
 Vue.prototype.$app = app

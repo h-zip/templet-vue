@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes" :style="styles"><slot></slot></div>
+  <div :class="classes" :style="styles" @click="onClick"><slot></slot></div>
 </template>
 
 <script>
@@ -22,6 +22,11 @@ export default {
       return {
         marginRight: this.space
       }
+    }
+  },
+  methods: {
+    onClick: function () {
+      this.$emit('click')
     }
   }
 }

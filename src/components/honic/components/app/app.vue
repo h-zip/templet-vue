@@ -1,13 +1,14 @@
 <template>
   <div :class="classes">
     <NavigationBar ref="navi"></NavigationBar>
-    <div class="content" @click="onClick">
-      aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-      aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-      aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-      aaa
-    </div>
-    <div class="tabbar">bottom</div>
+    <keep-alive><router-view></router-view></keep-alive>
+    <!--<div class="content" @click="onClick">-->
+      <!--aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>-->
+      <!--aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>-->
+      <!--aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>-->
+      <!--aaa-->
+    <!--</div>-->
+    <!--<div class="tabbar">bottom</div>-->
   </div>
 </template>
 
@@ -38,28 +39,17 @@ export default {
         fontSize: '0'
       },
       styleB: {
-        display: 'block',
-        position: 'relative',
         backgroundColor: 'black',
-        height: '40px',
-        width: '40px',
-        transform: 'translateY(2px)'
-
-
+        height: '30px',
+        width: '30px'
       },
       styleC: {
-        position: 'relative',
         color: 'white',
-        fontSize: '20px',
-        margin: 'auto',
-        lineHeight: '44px'
+        fontSize: '20px'
       },
       styleD: {
-        // backgroundColor: 'black',
         color: 'white',
-        fontSize: '20px',
-        lineHeight: '20px',
-        transform: 'translateY(12px)'
+        fontSize: '20px'
       },
       classD: {
         'ivu-icon': true,
@@ -81,12 +71,29 @@ export default {
           render: [
             (h) =>  h('i',{
               class: this.classD,
-              style: this.styleD
+              style: this.styleD,
+              on: {
+                click: () => {
+                  console.log(1111)
+                }
+              }
             }, []),
-            (h) =>  h('i',{
-              class: this.classD,
-              style: this.styleD
-            }, [])
+            (h) =>  h('img',{
+              style: this.styleB,
+              on: {
+                click: () => {
+                  console.log(2222)
+                }
+              }
+            }, []),
+            (h) =>  h('span', {
+              style: this.styleC,
+              on: {
+                click: () => {
+                  console.log(3333)
+                }
+              }
+            }, [1234])
           ]
         },
         render_t: {

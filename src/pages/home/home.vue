@@ -19,7 +19,6 @@ export default {
   data: function () {
     return{
       title: 'Home'
-
     }
   },
   watch: {},

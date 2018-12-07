@@ -15,6 +15,7 @@
         "build": "node build/build.js"
     },
     "dependencies": {
+        "animate.css": "^3.7.0",
         "axios": "^0.18.0",
         "cordova-android": "^6.2.3",
         "cordova-ios": "^4.4.0",

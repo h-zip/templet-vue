@@ -26,7 +26,9 @@ export default {
     let a = []
     if (this.renderS) {
       this.renderS.render.forEach((v) => {
-        v instanceof Function ? a.push(v(h)) : a.push(v)
+        let node = v(h)
+        node.data.style.lineHeight = '44px'
+        v instanceof Function ? a.push(node) : a.push(v)
       })
     }
     return h('div', {
