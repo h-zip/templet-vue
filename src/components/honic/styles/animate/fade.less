@@ -1,0 +1,73 @@
+.fade (@name,@x-orgin,@x-end,@y-orgin,@y-end,@o-orgin,@o-end) {
+  @keyframes @name{
+    0% {
+      opacity: @o-orgin;
+      transform: translate3d(@x-orgin, @y-orgin, 0);
+    }
+    100% {
+      opacity: @o-end;
+      transform: translate3d(@x-end, @y-end, 0);
+    }
+  }
+}
+
+// leftitem,rightitem
+@navi-fade-1-prefix-cls: ~"@{css-prefix}navi-fade-1";
+@navi-fade-1-in-during: .8s;
+@navi-fade-1-out-during: .8s;
+@navi-fade-1-in-animate: ~"@{navi-fade-1-prefix-cls}-in";
+@navi-fade-1-out-animate: ~"@{navi-fade-1-prefix-cls}-out";
+.@{navi-fade-1-prefix-cls} {
+  &-enter-active {
+    animation-duration: @navi-fade-1-in-during;
+    animation-fill-mode: both;
+    animation-name: @navi-fade-1-in-animate;
+    .fade(@navi-fade-1-in-animate,0,0,0,0,0,1);
+  }
+  &-leave-active {
+    animation-duration: @navi-fade-1-out-during;
+    animation-fill-mode: both;
+    animation-name: @navi-fade-1-out-animate;
+    .fade(@navi-fade-1-out-animate,0,0,0,0,1,0);
+  }
+}
+// titleview
+@navi-fade-2-prefix-cls: ~"@{css-prefix}navi-fade-2";
+@navi-fade-2-in-during: .8s;
+@navi-fade-2-out-during: .8s;
+@navi-fade-2-in-animate: ~"@{navi-fade-2-prefix-cls}-in";
+@navi-fade-2-out-animate: ~"@{navi-fade-2-prefix-cls}-out";
+.@{navi-fade-2-prefix-cls} {
+  &-enter-active {
+    animation-duration: @navi-fade-2-in-during;
+    animation-fill-mode: both;
+    animation-name: @navi-fade-2-in-animate;
+    .fade(@navi-fade-2-in-animate,30%,0,0,0,0,1);
+  }
+  &-leave-active {
+    animation-duration: @navi-fade-2-out-during;
+    animation-fill-mode: both;
+    animation-name: @navi-fade-2-out-animate;
+    .fade(@navi-fade-2-out-animate,0,30%,0,0,1,0);
+  }
+}
+
+@navi-fade-3-prefix-cls: ~"@{css-prefix}navi-fade-3";
+@navi-fade-3-in-during: .8s;
+@navi-fade-3-out-during: .8s;
+@navi-fade-3-in-animate: ~"@{navi-fade-3-prefix-cls}-in";
+@navi-fade-3-out-animate: ~"@{navi-fade-3-prefix-cls}-out";
+.@{navi-fade-3-prefix-cls} {
+  &-enter-active {
+    animation-duration: @navi-fade-3-in-during;
+    animation-fill-mode: both;
+    animation-name: @navi-fade-3-in-animate;
+    .fade(@navi-fade-3-in-animate,-30%,0,0,0,0,1);
+  }
+  &-leave-active {
+    animation-duration: @navi-fade-3-out-during;
+    animation-fill-mode: both;
+    animation-name: @navi-fade-3-out-animate;
+    .fade(@navi-fade-3-out-animate,0,-30%,0,0,1,0);
+  }
+}

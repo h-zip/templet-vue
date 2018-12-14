@@ -1,14 +1,24 @@
 <template>
-  <div style="padding-top: 64px">A-detail</div>
+  <div style="padding-top: 64px; color: white; font-size: 20px;">
+    A-detail<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    aaa
+  </div>
 </template>
 
 <script>
+import path from '../../router/path'
 export default {
   props: {},
   computed: {},
   data: function () {
     return {
       navi: {
+        hidden: false,
+        alpha: 1,
+        bgColor: '#ff9900',
         render_l: {
           props: {space: '5px'},
           render: [
@@ -18,11 +28,13 @@ export default {
                 'ivu-icon-ios-arrow-back': true
               },
               style: {
-                color: 'white',
+                color: 'black',
                 fontSize: '20px'
               },
               on: {
                 click: () => {
+                  let r = this.$router.matcher.match(this.$router.options.routes[this.$route.query.FRI])
+                  r.meta.naviType = 'back'
                   this.$router.back()
                 }
               }
@@ -39,7 +51,7 @@ export default {
             }, []),
             (h) =>  h('span', {
               style: {
-                color: 'white',
+                color: 'black',
                 fontSize: '20px'
               },
               on: {
@@ -53,7 +65,7 @@ export default {
           render: [
             (h) =>  h('div', {
               style: {
-                color: 'white',
+                color: 'black',
                 fontSize: '20px'
               }
             }, ['A-detail'])
@@ -69,7 +81,11 @@ export default {
                 width: '30px'
               },
               on: {
-                click: () => {}
+                click: () => {
+                  let r = this.$router.matcher.match(path.pageB.home)
+                  r.meta.naviType = 'push'
+                  this.$router.push({path: path.pageB.home, query: {FRI:4}})
+                }
               }
             }, [])
           ]
@@ -82,7 +98,7 @@ export default {
 
   },
   activated: function () {
-    this.$navi.config(this.navi)
+    this.$navi.config(this.navi, this.$route.meta.naviType)
   },
   deactivated: function () {
 

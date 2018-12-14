@@ -11,6 +11,8 @@ export default {
     return {
       title: 'PageA',
       navi: {
+        hidden: false,
+        alpha: 1,
         render_l: {
           props: {space: '5px'},
           render: [
@@ -26,7 +28,7 @@ export default {
             }, []),
             (h) =>  h('span', {
               style: {
-                color: 'white',
+                color: 'black',
                 fontSize: '20px'
               },
               on: {
@@ -40,7 +42,7 @@ export default {
           render: [
             (h) =>  h('div', {
               style: {
-                color: 'white',
+                color: 'black',
                 fontSize: '20px'
               }
             }, ['A-home'])
@@ -57,9 +59,12 @@ export default {
               },
               on: {
                 click: () => {
+                  // console.log(this.$router)
+                  // console.log(this.$vnode.tag.split('-')[2])
+                  // console.log(this.$keepAliveCache)
                   let r = this.$router.matcher.match(path.pageA.detail)
                   r.meta.naviType = 'push'
-                  this.$router.push({path: path.pageA.detail})
+                  this.$router.push({path: path.pageA.detail, query: {FRI:3}})
                 }
               }
             }, [])
@@ -73,7 +78,7 @@ export default {
   mounted: function () {
   },
   activated: function () {
-    this.$navi.config(this.navi)
+    this.$navi.config(this.navi, this.$route.meta.naviType)
   },
   deactivated: function () {
 

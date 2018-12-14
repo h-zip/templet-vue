@@ -1,0 +1,20 @@
+.color (@name,@c-orgin,@c-end) {
+  @keyframes @name{
+    0% {
+      background: @c-orgin;
+    }
+    100% {
+      background: @c-end;
+    }
+  }
+}
+//navi-bar
+@navi-color-prefix-cls: ~"@{css-prefix}navi-color";
+@navi-color-during: 0.8s;
+@navi-color-animate: ~"@{navi-color-prefix-cls}";
+.@{navi-color-prefix-cls} {
+  animation-duration: @navi-color-during;
+  animation-fill-mode: both;
+  animation-name: @navi-color-animate;
+  .color(@navi-color-animate,#FFFFFF,#FFFFFF);
+}

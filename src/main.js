@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import 'animate.css'
 import './components/honic/styles/index.less';
 import App from './components/honic/components/app'
 import _ from 'lodash'

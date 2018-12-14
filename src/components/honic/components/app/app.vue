@@ -1,6 +1,6 @@
 <template>
   <div :class="classes">
-    <NavigationBar ref="navi"></NavigationBar>
+    <NavigationBar></NavigationBar>
     <keep-alive><router-view></router-view></keep-alive>
     <!--<div class="content" @click="onClick">-->
       <!--aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>-->
@@ -59,6 +59,7 @@ export default {
     }
   },
   mounted: function () {
+    window.Vue.prototype.$keepAliveCache = this.$children[1].$vnode.parent.componentInstance.cache
   },
   methods: {
     onClick: function () {
