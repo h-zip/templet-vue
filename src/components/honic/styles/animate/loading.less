@@ -1,0 +1,24 @@
+.loading (@name) {
+  @keyframes @name{
+    from {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+@loading-prefix-cls: ~"@{css-prefix}loading";
+@loading-during: 1s;
+@loading-animate: ~"@{loading-prefix-cls}";
+.@{loading-prefix-cls} {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: @loading-during;
+  //animation-fill-mode: both;
+  animation-name: @loading-animate;
+  .loading(@loading-animate);
+}

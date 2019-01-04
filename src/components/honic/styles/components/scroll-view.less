@@ -1,0 +1,13 @@
+@scroll-view-prefix-cls: ~"@{css-prefix}scroll-view";
+.@{scroll-view-prefix-cls} {
+  position: relative;
+  &-header {
+    position: absolute;
+  }
+  &-content {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+}
