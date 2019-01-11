@@ -1,0 +1,14 @@
+@refresh-header-prefix-cls: ~"@{css-prefix}refresh-header";
+@refresh-arrow-prefix-cls: ~"@{css-prefix}refresh-arrow";
+.@{refresh-header-prefix-cls} {
+  position: relative;
+  .@{refresh-arrow-prefix-cls} {
+    transition-duration: 300ms;
+    &-up {
+      transform: rotate(180deg) translate3d(0, 0, 0);
+    }
+    &-down {
+      transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+  }
+}

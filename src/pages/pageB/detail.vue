@@ -1,14 +1,16 @@
 <template>
-  <div style="padding-top: 100px; color: white; font-size: 20px; width: 100%; height: 100%;">
+  <div style="padding-top: 0px; color: white; font-size: 20px; width: 100%; height: 100%;">
     <div style="background-color: #c53ef5; width: 100%; height: 500px;">
       <scroll-view width="100%" height="100%">
-        <div>
+        <refresh-header slot="header"></refresh-header>
+        <div slot="content">
           B-Detail<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
           aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
           aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
           aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
           aaa
         </div>
+        <!--<refresh-header slot="footer" slot-scope="scope" :scroll-top="scope.scrollTop" :touching="scope.touching" :refreshing="scope.refreshing" :diff="scope.diff" :top="scope.top"></refresh-header>-->
       </scroll-view>
     </div>
   </div>
@@ -16,10 +18,12 @@
 
 <script>
   import ScrollView from '../../components/honic/components/scroll-view'
+  import RefreshHeader from '../../components/honic/components/refresh-header'
   export default {
     props: {},
     components: {
-      ScrollView
+      ScrollView,
+      RefreshHeader
     },
     computed: {},
     data: function () {
