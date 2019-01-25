@@ -1,6 +1,9 @@
 <template>
   <div style="padding-top: 0; color: white; font-size: 20px;">
     <div style="background-color: #a4d4f5; width: 100%; height: 200px;"></div>
+    <scroll-view width="100%" height="200px" direction="x" :nest="false" style="background-color: #ff9900">
+      <div slot="content">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab</div>
+    </scroll-view>
     B-home<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
@@ -11,7 +14,11 @@
 
 <script>
 import path from '../../router/path'
+import ScrollView from '../../components/honic/components/scroll-view'
 export default {
+  components: {
+    ScrollView
+  },
   props: {},
   computed: {},
   data: function () {

@@ -7,6 +7,9 @@
 
 <script>
   const prefixCls = 'xxx-refresh-header';
+  const t1 = '下拉刷新';
+  const t2 = '松手刷新';
+  const t3 = '正在努力加载中。。。';
 	export default {
 		name: "refresh-header",
     props: {
@@ -16,12 +19,22 @@
       },
       interval: {
         type: Number,
-        default: 5000
+        default: 3000
       }
     },
     computed: {
 		  text: function () {
-		    return '123'
+		    let t = t1
+		    if (this.refreshing) {
+		      t = t3
+        } else {
+		      if (this.arrowFlag === 1) {
+		        t = t2
+          } else {
+		        t = t1
+          }
+        }
+		    return t
       },
       headerClasses: function () {
         return [
@@ -79,16 +92,17 @@
 
       },
       onTouchMove: function (e, data) {
+        console.log(11111)
         if (data.scrollTop > 0) {
-          if ((data.scrollTop + data.clientHeight >= data.scrollHeight) && data.diff < 0) {
+          if ((data.scrollTop + data.clientHeight >= data.scrollHeight) && data.diffY < 0) {
             e.preventDefault()
           }
           return
         }
-        if (data.diff > 0) {
+        if (data.diffY > 0) {
           e.preventDefault()
           if (this.$parent && this.$parent.setTop) {
-            let top = Math.pow(data.diff, 0.8) + (data.refreshing ? 30 : 0)
+            let top = Math.pow(data.diffY, 0.8) + (data.refreshing ? 30 : 0)
             this.$parent.setTop(top)
             this.arrowFlag = top >= 30 ? 1 : 2
           }
@@ -103,22 +117,15 @@
               self.$parent.setDuring(0)
             },this.during)
             if (data.top > 30) {
-              self.$parent.setTop(30)
-              self.refreshing = true
-              self.$parent.setRefreshing(true)
-              setTimeout(function () {
-                if (!data.touching) {
-                  self.$parent.setDuring(self.during)
-                  setTimeout(function () {
-                    self.$parent.setDuring(0)
-                  },self.during)
-                }
-                self.$parent.setTop(0)
-                self.refreshing = false
-                self.$parent.setRefreshing(false)
-              },this.interval)
+              this.$parent.setTop(30)
+              this.refreshing = true
+              this.$parent.setRefreshing(true)
+              this.$emit('on-refresh', this.endRefresh)
+              // setTimeout(function () {
+              //
+              // },this.interval)
             } else {
-              self.$parent.setTop(0)
+              this.$parent.setTop(0)
             }
           } else if (data.top > 30 && data.refreshing) {
             this.$parent.setDuring(this.during)
@@ -130,6 +137,18 @@
         }
       },
       onTouchCancel: function (e, data) {
+      },
+      endRefresh: function () {
+        if (!this.$parent.touching) {
+          this.$parent.setDuring(this.during)
+          let self = this
+          setTimeout(function () {
+            self.$parent.setDuring(0)
+          },self.during)
+        }
+        this.$parent.setTop(0)
+        this.refreshing = false
+        this.$parent.setRefreshing(false)
       }
     }
 	}

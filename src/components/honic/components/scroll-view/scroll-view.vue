@@ -18,7 +18,15 @@
 		name: "scroll-view",
     props: {
 		  height: String,
-      width: String
+      width: String,
+      direction: {
+		    type: String,
+        default: 'y'
+      },
+      nest: {
+		    type: Boolean,
+        default: false
+      }
     },
     computed: {
       containerClasses: function () {
@@ -32,18 +40,22 @@
         ]
       },
       containerStyles: function () {
-        return {
-          top: '-30px',
-          height: `calc(${this.height} + 30px)`,
+        let headerHeight = this.header ? this.header.$el.clientHeight : 0
+        let overflow = `overflow-${this.direction}`
+        let a = {
+          top: `-${headerHeight}px`,
+          height: `calc(${this.height} + ${headerHeight}px)`,
           width: this.width
         }
+        a[overflow] = 'auto'
+        return a
       },
       contentStyles: function () {
         return {
           transform: 'translate3d(0, ' + this.top + 'px, 0)',
           transitionDuration: this.during + 'ms'
         }
-      },
+      }
     },
     data: function () {
 		  return {
@@ -52,7 +64,9 @@
         touching: false,
         refreshing: false,
         startY: 0,
-        diff: 0,
+        startX: 0,
+        diffY: 0,
+        diffX: 0,
         top: 0,
         during: 0
       }
@@ -75,6 +89,7 @@
         return this.$refs.container ? this.$refs.container.scrollTop : 0
       },
 		  onScroll: function (e) {
+        if (this.nest) { e.stopPropagation() }
         let data = this.configData()
         if (this.header && this.header.onScroll) {this.header.onScroll(e, data) }
         if (this.footer && this.footer.onScroll) {this.footer.onScroll(e, data) }
@@ -113,10 +128,11 @@
         //       }, 500)
         //     }, 2000)
         //   }
-      // }
+        // }
         // this.$emit('on-scroll',this.container)
       },
       onTouchEnd: function (e) {
+        if (this.nest) { e.stopPropagation() }
         this.touching = false
         let data = this.configData()
         if (this.header && this.header.onTouchEnd) {this.header.onTouchEnd(e, data) }
@@ -125,7 +141,9 @@
       },
       onTouchStart: function (e) {
         // console.log('Start')
+        if (this.nest) { e.stopPropagation() }
         this.startY = e.targetTouches[0].pageY
+        this.startX = e.targetTouches[0].pageX
         this.touching = true
         let data = this.configData()
         if (this.header && this.header.onTouchStart) {this.header.onTouchStart(e, data) }
@@ -134,7 +152,18 @@
       },
       onTouchMove: function (e) {
         // console.log('Move')
-        this.diff = e.targetTouches[0].pageY - this.startY
+        if (this.nest) { e.stopPropagation() }
+        this.diffY = e.targetTouches[0].pageY - this.startY
+        this.diffX = e.targetTouches[0].pageX - this.startX
+        // if (this.direction === 'x') {
+        //   if (Math.abs(this.diffY) > Math.abs(this.diffX)) {
+        //     e.preventDefault()
+        //   }
+        // } else {
+        //   if (Math.abs(this.diffY) < Math.abs(this.diffX)) {
+        //     e.preventDefault()
+        //   }
+        // }
         let data = this.configData()
         if (this.header && this.header.onTouchMove) {this.header.onTouchMove(e, data) }
         if (this.footer && this.footer.onTouchMove) {this.footer.onTouchMove(e, data) }
@@ -142,6 +171,7 @@
       },
       onTouchCancel: function (e) {
         // console.log('Cancel')
+        if (this.nest) { e.stopPropagation() }
         let data = this.configData()
         if (this.header && this.header.onTouchCancel) {this.header.onTouchCancel(e, data) }
         if (this.footer && this.footer.onTouchCancel) {this.footer.onTouchCancel(e, data) }
@@ -154,7 +184,7 @@
           scrollHeight: this.scrollHeight(),
           touching: this.touching,
           refreshing: this.refreshing,
-          diff: this.diff,
+          diffY: this.diffY,
           top: this.top,
           during: this.during
         }

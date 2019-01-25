@@ -1,16 +1,19 @@
 <template>
   <div style="padding-top: 0px; color: white; font-size: 20px; width: 100%; height: 100%;">
     <div style="background-color: #c53ef5; width: 100%; height: 500px;">
-      <scroll-view width="100%" height="100%">
-        <refresh-header slot="header"></refresh-header>
-        <div slot="content">
-          B-Detail<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <scroll-view width="100%" height="100%" direction="y">
+        <refresh-header slot="header" @on-refresh="onRefresh"></refresh-header>
+        <div style="height: 100%;width: 100%" slot="content">
+          B-Detail<br/><br/><br/><br/>
+          <scroll-view width="100%" height="30%" direction="x" :nest="false" style="background-color: #ff9900">
+            <div slot="content">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+          </scroll-view>
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
           aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
           aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
           aaa<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
           aaa
         </div>
-        <!--<refresh-header slot="footer" slot-scope="scope" :scroll-top="scope.scrollTop" :touching="scope.touching" :refreshing="scope.refreshing" :diff="scope.diff" :top="scope.top"></refresh-header>-->
       </scroll-view>
     </div>
   </div>
@@ -65,6 +68,12 @@
         //   this.y = 'yellow'
         //   this.z = 0
         // }
+      },
+      onRefresh: function (end) {
+        setTimeout(function () {
+
+          end()
+        },3000)
       }
     }
   }
